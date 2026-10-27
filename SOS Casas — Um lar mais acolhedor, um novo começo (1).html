@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="SOS Casas — iniciativa sem fins lucrativos que conecta voluntários, doadores e parceiros para ajudar pessoas a cuidar e reorganizar seus ambientes domésticos.">
+<title>SOS Casas — Um lar mais acolhedor, um novo começo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde-floresta:#315B38;--verde-inst:#477548;--verde-oliva:#718566;--verde-claro:#DCE8CD;
+  --bg:#FAF9F4;--bege:#EDE8DC;--texto:#20241F;--texto-sec:#6C7169;--borda:#E3E5DC;
+  --radius:16px;--radius-sm:10px;color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --verde-floresta:#A9CCA2;--verde-inst:#6AA06C;--verde-oliva:#9BAE90;--verde-claro:#243127;
+    --bg:#141A15;--bege:#1D261F;--texto:#EDEFE8;--texto-sec:#A7B1A3;--borda:#2B362D;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --verde-floresta:#A9CCA2;--verde-inst:#6AA06C;--verde-oliva:#9BAE90;--verde-claro:#243127;
+  --bg:#141A15;--bege:#1D261F;--texto:#EDEFE8;--texto-sec:#A7B1A3;--borda:#2B362D;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:14px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+body{margin:0;background:var(--bg);color:var(--texto);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;color:var(--verde-floresta);line-height:1.15;margin:0 0 .45em;font-weight:600}
+h1{font-size:clamp(2.1rem,5vw,3.5rem);font-weight:600}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem)}
+h3{font-size:1.1rem}
+p{margin:0 0 1em}
+.muted{color:var(--texto-sec)}
+a{color:var(--verde-inst)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.section{padding:76px 0}
+.section-alt{background:var(--bege)}
+.lead{color:var(--verde-inst);font-weight:600;font-size:1rem;margin-bottom:.6em}
+.measure{max-width:640px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:.95rem;cursor:pointer;border:2px solid transparent;transition:transform .15s ease,background .15s ease;text-decoration:none}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--verde-inst);color:#fff}
+.btn-primary:hover{background:var(--verde-floresta)}
+.btn-outline{background:transparent;border-color:var(--verde-floresta);color:var(--verde-floresta)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--verde-inst);outline-offset:2px}
+.card{background:var(--bg);border:1px solid var(--borda);border-radius:var(--radius);padding:30px}
+.grid{display:grid;gap:22px}
+@media(min-width:760px){.grid-2{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:repeat(3,1fr)}.grid-4{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:620px) and (max-width:759px){.grid-4{grid-template-columns:1fr 1fr}}
+.tag{display:inline-block;background:var(--verde-claro);color:var(--verde-floresta);border-radius:999px;padding:7px 15px;font-size:.85rem;font-weight:600;margin:4px 6px 4px 0}
+.demo-banner{background:var(--verde-floresta);color:var(--bg);text-align:center;font-size:.82rem;padding:9px 14px}
+
+header.site{border-bottom:1px solid var(--borda);background:var(--bg)}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;max-width:1120px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:8px;font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:1.25rem;color:var(--verde-floresta);text-decoration:none;flex-shrink:0}
+.logo svg{width:26px;height:26px}
+nav.links{display:none;gap:26px;align-items:center}
+nav.links a{color:var(--texto);text-decoration:none;font-weight:500;font-size:.95rem}
+nav.links a:hover{color:var(--verde-inst)}
+.nav-cta{display:none;flex-shrink:0}
+.hamburger{display:inline-flex;background:none;border:1px solid var(--borda);border-radius:10px;padding:8px;cursor:pointer;color:var(--texto)}
+@media(min-width:880px){nav.links{display:flex}.nav-cta{display:inline-flex}.hamburger{display:none}}
+#mobile-menu{display:none;flex-direction:column;gap:2px;padding:6px 20px 20px;border-top:1px solid var(--borda)}
+#mobile-menu.open{display:flex}
+#mobile-menu a{padding:12px 8px;color:var(--texto);text-decoration:none;border-radius:8px}
+#mobile-menu a:hover{background:var(--bege)}
+
+.hero{position:relative;overflow:hidden;background:linear-gradient(145deg,var(--verde-claro) 0%,var(--bg) 62%)}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 18%,rgba(71,117,72,.22),transparent 55%),radial-gradient(circle at 60% 95%,rgba(113,133,102,.16),transparent 50%);pointer-events:none}
+.hero-inner{position:relative;max-width:1120px;padding:110px 20px 90px;margin:0 auto}
+.hero-content{max-width:560px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.hero-tag{margin-top:26px;font-style:italic;color:var(--texto-sec)}
+
+.steps .num{font-family:"Fraunces",serif;font-size:2.1rem;font-weight:700;color:var(--verde-inst);opacity:.4;margin-bottom:.1em}
+.field{margin-bottom:18px}
+.field label,legend{display:block;font-weight:600;margin-bottom:6px;font-size:.92rem;color:var(--texto)}
+.field .hint{font-size:.8rem;color:var(--texto-sec);margin-top:4px}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field select,.field textarea{
+  width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--borda);background:var(--bg);color:var(--texto);font:inherit}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--verde-inst)}
+.field textarea{min-height:100px;resize:vertical}
+.check-grid{display:flex;flex-wrap:wrap;gap:10px}
+.check-grid label{display:flex;align-items:center;gap:8px;background:var(--bege);padding:9px 14px;border-radius:999px;font-size:.88rem;font-weight:500;cursor:pointer;border:1px solid var(--borda);margin:0}
+.check-grid input{accent-color:var(--verde-inst)}
+.error-text{color:#9A3B3B;font-size:.84rem;margin-top:5px;display:none}
+:root[data-theme="dark"] .error-text,.error-text{color:#E39A9A}
+.field.invalid input,.field.invalid select,.field.invalid textarea,fieldset.invalid{border-color:#C25B5B}
+.field.invalid .error-text,fieldset.invalid .error-text{display:block}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--texto-sec);font-weight:400}
+.consent input{margin-top:3px;accent-color:var(--verde-inst);flex-shrink:0}
+.file-drop{border:2px dashed var(--borda);border-radius:var(--radius-sm);padding:18px}
+.previews{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.preview-item{position:relative;width:84px;height:84px;border-radius:10px;overflow:hidden;border:1px solid var(--borda)}
+.preview-item img{width:100%;height:100%;object-fit:cover;display:block}
+.preview-item button{position:absolute;top:3px;right:3px;background:rgba(0,0,0,.65);color:#fff;border:none;border-radius:50%;width:20px;height:20px;cursor:pointer;font-size:13px;line-height:1}
+.form-msg{border-radius:var(--radius-sm);padding:16px 18px;margin-bottom:20px;display:none}
+.form-msg.show{display:block}
+.form-msg.ok{background:var(--verde-claro);color:var(--verde-floresta)}
+.form-msg.err{background:#F4DEDE;color:#7A2E2E}
+fieldset{border:none;padding:0;margin:0 0 18px}
+
+details{border:1px solid var(--borda);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:10px;background:var(--bg)}
+summary{cursor:pointer;font-weight:600;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--verde-inst);font-size:1.3rem}
+details[open] summary::after{content:"–"}
+details p{margin-top:12px;margin-bottom:0}
+
+footer{background:var(--verde-floresta);color:var(--bg);padding:50px 0 calc(28px + env(safe-area-inset-bottom,0px))}
+footer a{color:var(--bg);opacity:.85;text-decoration:none}
+footer a:hover{opacity:1;text-decoration:underline}
+.foot-grid{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between}
+.foot-links{display:flex;flex-wrap:wrap;gap:16px;list-style:none;padding:0;margin:0}
+.foot-note{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2);font-size:.82rem;opacity:.85}
+footer details{background:transparent;border-color:rgba(255,255,255,.25);margin-top:26px}
+footer summary{color:var(--bg)}
+footer summary::after{color:var(--bg)}
+footer details p{opacity:.85}
+</style>
+</head>
+<body>
+<p class="demo-banner">Projeto demonstrativo desenvolvido para um Trabalho de Conclusão de Ano (TCA) — os formulários abaixo não enviam dados a uma equipe real.</p>
+<div id="top"></div>
+<header class="site">
+  <div class="nav-wrap">
+    <a href="#top" class="logo" aria-label="SOS Casas, início">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11L12 3l9 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v10h14V10" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 20v-6h-4v6" stroke="currentColor" stroke-width="1.8"/><path d="M9 7.3c1.4-1.8 3.7-1.8 4.6 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      SOS Casas
+    </a>
+    <nav class="links" aria-label="Navegação principal">
+      <a href="#top">Início</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#relatos">Relatos</a>
+      <a href="#inscricao">Peça ajuda</a>
+      <a href="#participe">Participe</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <a href="#inscricao" class="btn btn-primary nav-cta">Solicitar ajuda</a>
+    <button class="hamburger" id="menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu">
+    <a href="#top">Início</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#relatos">Relatos</a>
+    <a href="#inscricao">Peça ajuda</a>
+    <a href="#participe">Participe</a>
+    <a href="#faq">Dúvidas</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="lead">Uma iniciativa de cuidado e transformação</p>
+      <h1>Um lar mais acolhedor. Um novo começo.</h1>
+      <p class="muted" style="font-size:1.08rem">Acreditamos que cuidar da casa também pode ser uma forma de cuidar das pessoas. Conectamos solidariedade, voluntariado e esperança para transformar ambientes e acolher histórias.</p>
+      <div class="hero-actions">
+        <a href="#inscricao" class="btn btn-primary">Preciso de ajuda</a>
+        <a href="#participe" class="btn btn-outline">Quero fazer parte</a>
+      </div>
+      <p class="hero-tag">“Cada transformação começa com um gesto de cuidado.”</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="como-funciona">
+  <div class="wrap">
+    <h2>Quatro passos para começar uma transformação</h2>
+    <p class="muted measure">A SOS Casas nasce da ideia de que ninguém deveria enfrentar momentos difíceis sem apoio. Mobilizamos voluntários, doadores e parceiros para ajudar a criar ambientes mais organizados, seguros e acolhedores — sempre com avaliação individual e sem julgamentos.</p>
+    <div class="grid grid-4 steps" style="margin-top:34px">
+      <div><div class="num">01</div><h3>Conte sua história</h3><p class="muted">Preencha uma inscrição gratuita e explique sua situação.</p></div>
+      <div><div class="num">02</div><h3>Mostre seu espaço</h3><p class="muted">Se desejar, envie fotografias dos ambientes e descreva suas necessidades.</p></div>
+      <div><div class="num">03</div><h3>Analisaremos a solicitação</h3><p class="muted">A equipe avalia o pedido e verifica as possibilidades de atendimento.</p></div>
+      <div><div class="num">04</div><h3>Planejaremos a transformação</h3><p class="muted">Quando houver disponibilidade, organizaremos os recursos e as pessoas necessárias.</p></div>
+    </div>
+    <a href="#inscricao" class="btn btn-primary" style="margin-top:36px">Fazer inscrição gratuita</a>
+  </div>
+</section>
+
+<section class="section section-alt" id="relatos">
+  <div class="wrap">
+    <h2>Por trás de cada casa, existe uma história.</h2>
+    <p class="muted measure">Cada pessoa merece ser acolhida com respeito, dignidade e compreensão.</p>
+    <div class="grid grid-3" style="margin-top:30px">
+      <div class="card">
+        <p style="font-style:italic">“Eu estava passando por uma fase difícil e algumas tarefas do dia a dia pareciam muito complicadas. Receber apoio para organizar meu espaço seria um passo importante para retomar minha rotina.”</p>
+        <p style="margin:0;font-weight:600">Ana</p>
+        <p class="muted" style="font-size:.78rem;margin:2px 0 0">Relato fictício para demonstração do projeto.</p>
+      </div>
+      <div class="card">
+        <p style="font-style:italic">“Minha casa precisava de organização e de alguns cuidados. O que mais importa é encontrar pessoas dispostas a ajudar sem julgamentos e respeitando o tempo de cada um.”</p>
+        <p style="margin:0;font-weight:600">Marcos</p>
+        <p class="muted" style="font-size:.78rem;margin:2px 0 0">Relato fictício para demonstração do projeto.</p>
+      </div>
+      <div class="card">
+        <p style="font-style:italic">“Um ambiente mais limpo e acolhedor pode tornar as atividades cotidianas mais agradáveis. Pequenas mudanças podem representar um novo começo.”</p>
+        <p style="margin:0;font-weight:600">Juliana</p>
+        <p class="muted" style="font-size:.78rem;margin:2px 0 0">Relato fictício para demonstração do projeto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="inscricao">
+  <div class="wrap" style="max-width:720px">
+    <h2>Sua história merece ser acolhida.</h2>
+    <p class="muted">Conte-nos um pouco sobre sua situação. A inscrição é gratuita e, nesta demonstração, é usada apenas para mostrar o funcionamento do projeto — nada é enviado a uma equipe real.</p>
+    <div class="card">
+      <div id="insc-msg" class="form-msg" role="status" aria-live="polite"></div>
+      <form id="form-inscricao" novalidate>
+        <div class="field" data-field="nome"><label for="i-nome">Nome</label><input type="text" id="i-nome" name="nome" required><p class="error-text">Informe seu nome.</p></div>
+        <div class="grid grid-2">
+          <div class="field" data-field="idade"><label for="i-idade">Faixa etária</label>
+            <select id="i-idade" name="idade" required>
+              <option value="">Selecione</option><option>Até 17 anos</option><option>18 a 29 anos</option><option>30 a 44 anos</option><option>45 a 59 anos</option><option>60 anos ou mais</option>
+            </select><p class="error-text">Selecione uma faixa etária.</p>
+          </div>
+          <div class="field" data-field="email"><label for="i-email">E-mail</label><input type="email" id="i-email" name="email" required><p class="error-text">Informe um e-mail válido.</p></div>
+        </div>
+        <div class="grid grid-2">
+          <div class="field"><label for="i-tel">Telefone (opcional)</label><input type="tel" id="i-tel" name="telefone"></div>
+          <div class="field" data-field="cidade"><label for="i-cidade">Cidade e bairro</label><input type="text" id="i-cidade" name="cidade" required placeholder="Ex.: São Paulo, Vila Mariana"><p class="error-text">Informe cidade e bairro.</p></div>
+        </div>
+        <fieldset class="field" data-field="ambientes">
+          <legend>Ambientes que precisam de apoio</legend>
+          <div class="check-grid">
+            <label><input type="checkbox" name="ambiente" value="Sala">Sala</label>
+            <label><input type="checkbox" name="ambiente" value="Cozinha">Cozinha</label>
+            <label><input type="checkbox" name="ambiente" value="Quarto">Quarto(s)</label>
+            <label><input type="checkbox" name="ambiente" value="Banheiro">Banheiro</label>
+            <label><input type="checkbox" name="ambiente" value="Área externa">Área externa</label>
+            <label><input type="checkbox" name="ambiente" value="Outro">Outro</label>
+          </div><p class="error-text">Selecione ao menos um ambiente.</p>
+        </fieldset>
+        <fieldset class="field" data-field="ajuda">
+          <legend>Tipo de ajuda desejada</legend>
+          <div class="check-grid">
+            <label><input type="checkbox" name="ajuda" value="Organização">Organização</label>
+            <label><input type="checkbox" name="ajuda" value="Limpeza">Limpeza</label>
+            <label><input type="checkbox" name="ajuda" value="Pequenos reparos">Pequenos reparos</label>
+            <label><input type="checkbox" name="ajuda" value="Produtos essenciais">Produtos essenciais</label>
+            <label><input type="checkbox" name="ajuda" value="Outras necessidades">Outras necessidades</label>
+          </div><p class="error-text">Selecione ao menos um tipo de ajuda.</p>
+        </fieldset>
+        <div class="field"><label for="i-desc">Descrição da situação (opcional)</label><textarea id="i-desc" name="descricao" maxlength="600"></textarea></div>
+        <div class="field"><label for="i-foto">Fotografias dos ambientes (opcional)</label>
+          <div class="file-drop">
+            <input type="file" id="i-foto" accept="image/png,image/jpeg,image/webp" multiple>
+            <p class="hint">JPG, PNG ou WEBP — até 5 MB por imagem. Nada é enviado a servidores externos.</p>
+          </div>
+          <div class="previews" id="previews"></div>
+          <p class="error-text" id="foto-error">Alguns arquivos foram ignorados (tipo ou tamanho inválido).</p>
+        </div>
+        <div class="field" data-field="consent">
+          <label class="consent"><input type="checkbox" id="i-consent" name="consentimento" required><span>Entendo que esta é uma demonstração educacional e autorizo o uso destas informações apenas nesse contexto, sem envio a terceiros.</span></label>
+          <p class="error-text">É necessário confirmar para continuar.</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar inscrição</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="participe">
+  <div class="wrap">
+    <h2>Seu tempo, seus produtos ou seu apoio também transformam um lar</h2>
+    <p class="muted measure">A SOS Casas busca mobilizar pessoas, empresas e instituições interessadas em apoiar ações de organização, limpeza e melhoria dos ambientes domésticos — como voluntária(o), com doações de produtos e materiais, ou como patrocinador(a).</p>
+    <div style="margin:18px 0 30px">
+      <span class="tag">Organização e limpeza</span><span class="tag">Pintura e pequenos reparos</span><span class="tag">Separação de doações</span><span class="tag">Comunicação e divulgação</span><span class="tag">Apoio administrativo</span><span class="tag">Psicologia e saúde</span><span class="tag">Patrocínio financeiro</span><span class="tag">Empresas parceiras</span>
+    </div>
+    <div class="card" style="max-width:640px">
+      <div id="participe-msg" class="form-msg" role="status" aria-live="polite"></div>
+      <form id="form-participe" novalidate>
+        <div class="field" data-field="nome"><label for="p-nome">Nome</label><input type="text" id="p-nome" name="nome" required><p class="error-text">Informe seu nome.</p></div>
+        <div class="grid grid-2">
+          <div class="field" data-field="contato"><label for="p-contato">E-mail ou telefone</label><input type="text" id="p-contato" name="contato" required><p class="error-text">Informe um contato.</p></div>
+          <div class="field" data-field="cidade"><label for="p-cidade">Cidade</label><input type="text" id="p-cidade" name="cidade" required><p class="error-text">Informe sua cidade.</p></div>
+        </div>
+        <div class="field"><label for="p-interesse">Tenho interesse em</label>
+          <select id="p-interesse" name="interesse">
+            <option>Ser voluntário(a)</option><option>Atuar como psicólogo(a) / saúde</option><option>Doar produtos de limpeza</option><option>Oferecer materiais e melhorias</option><option>Patrocínio financeiro</option><option>Ser empresa parceira</option>
+          </select>
+        </div>
+        <div class="field"><label for="p-msg">Disponibilidade ou mensagem (opcional)</label><textarea id="p-msg" name="mensagem"></textarea></div>
+        <button type="submit" class="btn btn-primary">Quero fazer parte</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="faq">
+  <div class="wrap" style="max-width:720px">
+    <h2>Perguntas frequentes</h2>
+    <p class="muted" style="margin-bottom:28px">Tire suas dúvidas sobre como funciona a SOS Casas.</p>
+    <details><summary>A SOS Casas cobra pelos atendimentos?</summary><p>A proposta do projeto é oferecer apoio gratuito às pessoas selecionadas.</p></details>
+    <details><summary>Qualquer pessoa pode se inscrever?</summary><p>Qualquer pessoa pode demonstrar interesse. As solicitações são avaliadas conforme as necessidades e os recursos disponíveis.</p></details>
+    <details><summary>Preciso enviar fotografias?</summary><p>Não. O envio de fotografias é opcional.</p></details>
+    <details><summary>A organização oferece acompanhamento psicológico?</summary><p>O foco da SOS Casas é o apoio prático ao ambiente doméstico. Contamos também com voluntários da área da saúde, incluindo psicólogos, que participam da rede por iniciativa própria — isso não substitui acompanhamento psicológico profissional, que recomendamos buscar separadamente quando necessário.</p></details>
+    <details><summary>Como posso ajudar?</summary><p>É possível demonstrar interesse em contribuir com produtos, materiais, serviços, patrocínios ou voluntariado na seção “Participe”.</p></details>
+    <details><summary>Como uma empresa pode participar?</summary><p>Empresas podem utilizar o formulário da seção “Participe” para apresentar uma proposta de parceria.</p></details>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo" style="color:var(--bg)">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11L12 3l9 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v10h14V10" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        SOS Casas
+      </div>
+      <p style="opacity:.85;margin-top:6px">Transformando espaços. Cultivando cuidado.</p>
+    </div>
+    <ul class="foot-links">
+      <li><a href="#top">Início</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#inscricao">Peça ajuda</a></li>
+      <li><a href="#participe">Participe</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+    </ul>
+  </div>
+  <div class="wrap">
+    <details>
+      <summary>Política de privacidade (demonstrativa)</summary>
+      <p>Neste projeto educacional, nenhum dado preenchido nos formulários é enviado a servidores externos ou armazenado permanentemente — tudo permanece apenas na sessão do navegador, para fins de demonstração.</p>
+    </details>
+    <p class="foot-note">Projeto desenvolvido para fins educacionais — TCA.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var menuBtn=document.getElementById('menu-btn'),menu=document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',open?'true':'false');
+    menuBtn.setAttribute('aria-label',open?'Fechar menu':'Abrir menu');
+  });
+  Array.prototype.forEach.call(menu.querySelectorAll('a'),function(a){
+    a.addEventListener('click',function(){menu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.setAttribute('aria-label','Abrir menu')});
+  });
+
+  function setInvalid(field,show){field.classList.toggle('invalid',show)}
+  function validRequired(form,names){
+    var ok=true,firstInvalid=null;
+    names.forEach(function(n){
+      var field=form.querySelector('[data-field="'+n+'"]');
+      if(!field)return;
+      var valid,checks=field.querySelectorAll('input[type=checkbox]');
+      if(checks.length){valid=Array.prototype.some.call(checks,function(c){return c.checked})}
+      else{
+        var input=field.querySelector('input,select,textarea');
+        valid=input.value.trim().length>0;
+        if(input.type==='email'&&valid){valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())}
+      }
+      setInvalid(field,!valid);
+      if(!valid){ok=false;if(!firstInvalid)firstInvalid=field}
+    });
+    if(firstInvalid)firstInvalid.scrollIntoView({block:'center',behavior:'smooth'});
+    return ok;
+  }
+
+  var filesArr=[];
+  var fotoInput=document.getElementById('i-foto'),previews=document.getElementById('previews'),fotoErr=document.getElementById('foto-error');
+  fotoInput.addEventListener('change',function(){
+    var bad=false;
+    Array.prototype.forEach.call(fotoInput.files,function(f){
+      if(!/^image\/(png|jpeg|webp)$/.test(f.type)||f.size>5*1024*1024){bad=true;return}
+      filesArr.push({file:f,url:URL.createObjectURL(f)});
+    });
+    fotoErr.style.display=bad?'block':'none';
+    fotoInput.value='';
+    renderPreviews();
+  });
+  function renderPreviews(){
+    previews.innerHTML='';
+    filesArr.forEach(function(item,i){
+      var div=document.createElement('div');div.className='preview-item';
+      var img=document.createElement('img');img.src=item.url;img.alt='Pré-visualização de imagem enviada';
+      var btn=document.createElement('button');btn.type='button';btn.setAttribute('aria-label','Remover imagem');btn.textContent='×';
+      btn.addEventListener('click',function(){URL.revokeObjectURL(item.url);filesArr.splice(i,1);renderPreviews()});
+      div.appendChild(img);div.appendChild(btn);previews.appendChild(div);
+    });
+  }
+
+  var formInsc=document.getElementById('form-inscricao'),inscMsg=document.getElementById('insc-msg');
+  formInsc.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=validRequired(formInsc,['nome','idade','email','cidade','ambientes','ajuda','consent']);
+    inscMsg.className='form-msg show '+(ok?'ok':'err');
+    inscMsg.textContent=ok?'Inscrição simulada com sucesso! Esta é uma demonstração — nenhum dado foi enviado a uma equipe real.':'Verifique os campos destacados antes de enviar.';
+    inscMsg.scrollIntoView({block:'center',behavior:'smooth'});
+  });
+
+  var formPart=document.getElementById('form-participe'),partMsg=document.getElementById('participe-msg');
+  formPart.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok=validRequired(formPart,['nome','contato','cidade']);
+    partMsg.className='form-msg show '+(ok?'ok':'err');
+    partMsg.textContent=ok?'Interesse registrado nesta demonstração — obrigado! Nenhum dado real foi enviado.':'Verifique os campos destacados antes de enviar.';
+    partMsg.scrollIntoView({block:'center',behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+</html>
